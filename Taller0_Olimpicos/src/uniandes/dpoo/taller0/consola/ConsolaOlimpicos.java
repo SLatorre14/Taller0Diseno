@@ -10,6 +10,7 @@ import java.util.Map;
 
 import uniandes.dpoo.taller0.modelo.Atleta;
 import uniandes.dpoo.taller0.modelo.Genero;
+import uniandes.dpoo.taller0.modelo.Pais;
 import uniandes.dpoo.taller0.procesamiento.CalculadoraEstadisticas;
 import uniandes.dpoo.taller0.procesamiento.LoaderOlimpicos;
 
@@ -62,7 +63,9 @@ public class ConsolaOlimpicos
 					ejecutarMedallistasPorNacionYGenero();
 				else if (opcion_seleccionada == 12 && calculadora != null)
 					ejecutarPorcentajeMedallistas();
-				else if (opcion_seleccionada == 13)
+				else if (opcion_seleccionada == 13 && calculadora != null)
+					ejecutarAtletaPais();
+				else if (opcion_seleccionada == 14)
 				{
 					System.out.println("Saliendo de la aplicación ...");
 					continuar = false;
@@ -102,7 +105,8 @@ public class ConsolaOlimpicos
 		System.out.println("10. Consultar el atleta todoterreno");
 		System.out.println("11. Consultar los medallistas por país y género");
 		System.out.println("12. Consultar el porcentaje de atletas que son medallistas");
-		System.out.println("13. Salir de la aplicación\n");
+		System.out.println("13. Consultar el pais de un atleta");
+		System.out.println("14. Salir de la aplicación\n");
 	}
 
 	/**
@@ -368,7 +372,18 @@ public class ConsolaOlimpicos
 	 * atletas, lo carga usando la clase LoaderOlimpicos y crea un objeto de tipo
 	 * CalculadoraEstadisticas para que sea usado por las otras opciones de la
 	 * consola.
+	 * @return 
 	 */
+	
+	private void ejecutarAtletaPais()
+	{
+		String nombre = input("Ingrese el nombre del atleta a buscar");
+		Atleta atleta = calculadora.buscarPaisAtleta(nombre);
+		Pais pais = atleta.darPais();
+		System.out.println(nombre + " es representante de " + pais.darNombre());
+		
+	}
+	
 	private void ejecutarCargarAtletas()
 	{
 		System.out.println("\n" + "Cargar un archivo de atletas" + "\n");
